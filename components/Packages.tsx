@@ -80,12 +80,12 @@ export default function Packages() {
           opacity: 1,
           y: 0,
           scale: 1,
-          duration: 0.8,
-          delay: index * 0.15,
+          duration: 0.3,
+          delay: index * 0.04,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: card,
-            start: 'top 80%',
+            start: 'top 85%',
             toggleActions: 'play none none none',
           },
         }
@@ -128,11 +128,11 @@ export default function Packages() {
   }
 
   return (
-    <section id="packages" ref={sectionRef} className="bg-white">
+    <section id="packages" ref={sectionRef} className="bg-gray-50">
       <div className="container-custom">
         <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
-            Choose Your <span className="gradient-text">Package</span>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 text-gray-900">
+            Choose Your <span className="text-yellow-accent">Package</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Flexible options to match your business needs and growth stage.
@@ -146,15 +146,15 @@ export default function Packages() {
               ref={(el) => {
                 if (el) cardsRef.current[index] = el
               }}
-              className={`card relative ${
+              className={`bg-white border rounded-card shadow-soft p-6 transition-all duration-300 relative ${
                 pkg.popular
-                  ? 'border-2 border-primary-500 shadow-glow bg-gradient-to-br from-primary-50 to-white'
-                  : ''
+                  ? 'border-yellow-accent shadow-glow scale-105'
+                  : 'border-gray-200 hover:border-yellow-accent/50 hover:shadow-card'
               }`}
             >
               {pkg.popular && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <span className="bg-gradient-to-r from-primary-600 to-accent-600 text-white px-4 py-1 rounded-full text-sm font-bold shadow-lg">
+                  <span className="bg-yellow-accent text-black px-4 py-1 rounded-full text-sm font-bold shadow-lg">
                     Most Popular
                   </span>
                 </div>
@@ -163,7 +163,7 @@ export default function Packages() {
               <h3 className="text-3xl font-bold mb-2 text-gray-900">{pkg.name}</h3>
               
               <div className="mb-4">
-                <span className="text-5xl font-bold gradient-text">{pkg.price}</span>
+                <span className="text-5xl font-bold text-yellow-accent">{pkg.price}</span>
                 <span className="text-gray-600 text-lg">{pkg.period}</span>
               </div>
               
@@ -173,7 +173,7 @@ export default function Packages() {
                 {pkg.features.map((feature, idx) => (
                   <li key={idx} className="flex items-start">
                     <svg
-                      className="w-6 h-6 text-primary-600 mr-3 flex-shrink-0 mt-0.5"
+                      className="w-6 h-6 text-yellow-accent mr-3 flex-shrink-0 mt-0.5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -194,8 +194,8 @@ export default function Packages() {
                 onClick={scrollToCTA}
                 className={`w-full py-4 rounded-full font-bold text-lg transition-all duration-300 ${
                   pkg.popular
-                    ? 'btn-primary'
-                    : 'btn-secondary'
+                    ? 'bg-yellow-accent text-black hover:bg-yellow-accent/90 shadow-lg'
+                    : 'bg-white text-yellow-accent border-2 border-yellow-accent hover:bg-yellow-accent/10'
                 }`}
               >
                 {pkg.cta}

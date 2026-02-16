@@ -59,12 +59,12 @@ export default function Problem() {
           opacity: 1,
           y: 0,
           scale: 1,
-          duration: 0.8,
-          delay: index * 0.2,
+          duration: 0.3,
+          delay: index * 0.05,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: card,
-            start: 'top 80%',
+            start: 'top 85%',
             end: 'top 50%',
             toggleActions: 'play none none none',
           },
@@ -77,7 +77,7 @@ export default function Problem() {
     <section id="problem" ref={sectionRef} className="bg-gray-50">
       <div className="container-custom">
         <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 text-gray-900">
             The Problem Most Service Businesses Face
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -92,9 +92,9 @@ export default function Problem() {
               ref={(el) => {
                 if (el) cardsRef.current[index] = el
               }}
-              className="card card-hover text-center"
+              className="bg-white border border-gray-200 rounded-card shadow-soft p-6 transition-all duration-300 hover:scale-105 hover:shadow-card hover:border-yellow-accent/50 text-center"
             >
-              <div className="text-primary-600 mb-4 flex justify-center">
+              <div className="text-yellow-accent mb-4 flex justify-center">
                 {problem.icon}
               </div>
               <h3 className="text-2xl font-bold mb-4 text-gray-900">

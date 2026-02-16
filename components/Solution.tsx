@@ -47,12 +47,12 @@ export default function Solution() {
         {
           opacity: 1,
           x: 0,
-          duration: 0.8,
-          delay: index * 0.3,
+          duration: 0.3,
+          delay: index * 0.08,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: step,
-            start: 'top 80%',
+            start: 'top 85%',
             toggleActions: 'play none none none',
           },
         }
@@ -68,11 +68,11 @@ export default function Solution() {
         },
         {
           scaleY: 1,
-          duration: 1.5,
+          duration: 0.5,
           ease: 'power2.out',
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top 60%',
+            start: 'top 70%',
             toggleActions: 'play none none none',
           },
         }
@@ -81,53 +81,51 @@ export default function Solution() {
   }, [])
 
   return (
-    <section id="solution" ref={sectionRef} className="bg-white relative">
+    <section id="solution" ref={sectionRef} className="bg-gray-50 relative">
       <div className="container-custom">
         <div className="text-center mb-20">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
-            How Our <span className="gradient-text">Lead Engine</span> Works
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 text-gray-900">
+            How Our <span className="text-yellow-accent">Lead Engine</span> Works
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-700 max-w-2xl mx-auto">
             A proven 3-step process to build a predictable lead generation system for your business.
           </p>
         </div>
 
         <div className="relative">
-          {/* Timeline Line - Desktop */}
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-500 to-accent-500 transform -translate-x-1/2">
+          {/* Timeline Line - Desktop - Vertical line connecting steps */}
+          <div className="hidden md:block absolute left-12 top-0 bottom-0 w-0.5 bg-yellow-accent/30">
             <div
               ref={timelineRef}
-              className="absolute top-0 left-0 w-full bg-gradient-to-b from-primary-500 to-accent-500 origin-top"
+              className="absolute top-0 left-0 w-full bg-yellow-accent origin-top"
               style={{ transform: 'scaleY(0)' }}
             />
           </div>
 
-          {/* Steps */}
-          <div className="space-y-16 md:space-y-24">
+          {/* Steps - Vertical layout with numbers on left, content on right */}
+          <div className="space-y-16 md:space-y-20">
             {steps.map((step, index) => (
               <div
                 key={index}
                 ref={(el) => {
                   if (el) stepsRef.current[index] = el
                 }}
-                className={`relative flex flex-col md:flex-row items-center gap-8 ${
-                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                }`}
+                className="relative flex flex-col md:flex-row items-start gap-8 md:gap-12"
               >
-                {/* Step Number Circle */}
-                <div className="relative z-10 flex-shrink-0">
-                  <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary-600 to-accent-600 flex items-center justify-center shadow-glow">
-                    <span className="text-3xl font-bold text-white">{step.number}</span>
+                {/* Step Number Circle - Always on left */}
+                <div className="relative z-10 flex-shrink-0 md:w-24">
+                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-yellow-accent flex items-center justify-center shadow-glow">
+                    <span className="text-2xl md:text-3xl font-bold text-black">{step.number}</span>
                   </div>
                 </div>
 
-                {/* Step Content */}
-                <div className={`flex-1 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
-                  <div className="card max-w-lg mx-auto md:mx-0">
+                {/* Step Content - Always on right */}
+                <div className="flex-1 md:pt-2">
+                  <div className="bg-white border border-gray-200 rounded-card shadow-soft p-6 max-w-2xl">
                     <h3 className="text-3xl font-bold mb-4 text-gray-900">
                       {step.title}
                     </h3>
-                    <p className="text-lg text-gray-600 leading-relaxed">
+                    <p className="text-lg text-gray-700 leading-relaxed">
                       {step.description}
                     </p>
                   </div>

@@ -106,12 +106,12 @@ export default function Results() {
           opacity: 1,
           y: 0,
           scale: 1,
-          duration: 0.8,
-          delay: index * 0.2,
+          duration: 0.3,
+          delay: index * 0.05,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: card,
-            start: 'top 80%',
+            start: 'top 85%',
             toggleActions: 'play none none none',
           },
         }
@@ -120,13 +120,13 @@ export default function Results() {
   }, [])
 
   return (
-    <section id="results" ref={sectionRef} className="bg-gradient-to-b from-gray-50 to-white">
+    <section id="results" ref={sectionRef} className="bg-gray-800">
       <div className="container-custom">
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
-            Real Results from <span className="gradient-text">Real Businesses</span>
+            <span className="text-gray-300">Real Results from</span> <span className="text-yellow-accent">Real Businesses</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
             See how we've helped service businesses in Brisbane, Ipswich, and Toowoomba build predictable lead engines.
           </p>
         </div>
@@ -138,10 +138,10 @@ export default function Results() {
               ref={(el) => {
                 if (el) cardsRef.current[index] = el
               }}
-              className="card card-hover"
+              className="bg-white rounded-card shadow-card p-6 transition-all duration-300 hover:scale-105 hover:shadow-glow"
             >
               <div className="mb-6">
-                <div className="text-5xl sm:text-6xl font-bold gradient-text mb-2">
+                <div className="text-5xl sm:text-6xl font-bold text-yellow-accent mb-2">
                   <AnimatedCounter value={study.metric} />
                 </div>
                 <div className="text-lg text-gray-600 font-medium">
@@ -158,7 +158,7 @@ export default function Results() {
               </p>
               
               <div className="pt-4 border-t border-gray-200">
-                <span className="text-primary-600 font-bold text-lg">
+                <span className="text-yellow-accent font-bold text-lg">
                   {study.result}
                 </span>
               </div>

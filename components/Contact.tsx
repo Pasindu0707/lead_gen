@@ -34,73 +34,33 @@ export default function Contact() {
     <section 
       id="contact" 
       ref={ref} 
-      className="py-40 px-4 sm:px-6 lg:px-8 relative"
-      style={{
-        background: 'linear-gradient(135deg, #FFC700 0%, #FFD633 50%, #FFE066 100%), radial-gradient(ellipse at bottom right, rgba(255, 255, 255, 0.2) 0%, transparent 50%)'
-      }}
+      className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 relative bg-black"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="text-center mb-24"
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          className="text-center mb-16"
         >
-          <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-8 tracking-tight text-black">
-            Ready to Get Started?
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight">
+            <span className="text-gray-300">Ready to Build Your</span>
+            <br />
+            <span className="text-yellow-accent">Predictable Lead Engine?</span>
           </h2>
-          <p className="text-xl sm:text-2xl text-gray-700 max-w-3xl mx-auto font-light">
-            Let's build your lead engine together.
+          <p className="text-xl sm:text-2xl text-white/80 max-w-3xl mx-auto font-medium mb-8">
+            Book a free strategy call and discover how we can build a lead generation system 
+            that delivers consistent, qualified calls to your business.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div className="max-w-2xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-            className="space-y-8"
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
           >
-            <div>
-              <h3 className="text-4xl font-bold mb-6 text-black">Book Your Strategy Call</h3>
-              <p className="text-xl text-gray-700 leading-relaxed mb-8">
-                Schedule a free consultation to discuss your business goals and how we can build a consistent lead generation system for you.
-              </p>
-            </div>
-            <ul className="space-y-5 mb-10">
-              {['Free strategy consultation', 'Custom lead generation plan', 'No obligation, no pressure'].map((item, index) => (
-                <motion.li
-                  key={item}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.3 + index * 0.1 }}
-                  className="flex items-start"
-                >
-                  <span className="text-yellow-accent mr-4 text-xl">✓</span>
-                  <span className="text-lg text-gray-800">{item}</span>
-                </motion.li>
-              ))}
-            </ul>
-            <motion.button
-              whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(255, 199, 0, 0.3)' }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => {
-                // In production, this would open Calendly or similar
-                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
-              }}
-              aria-label="Book a call"
-              className="px-10 py-5 bg-yellow-accent text-black font-bold rounded-full text-lg hover:bg-yellow-accent/90 transition-all shadow-lg shadow-yellow-accent/20"
-            >
-              Book a Call
-            </motion.button>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
-          >
-            <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 rounded-3xl border border-gray-200 shadow-lg">
+            <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 rounded-card shadow-card">
               <div>
                 <label htmlFor="name" className="block text-sm font-semibold mb-3 text-black">
                   Name *

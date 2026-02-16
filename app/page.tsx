@@ -5,8 +5,9 @@ import Solution from '@/components/Solution'
 import Results from '@/components/Results'
 import Packages from '@/components/Packages'
 import Trust from '@/components/Trust'
-import FinalCTA from '@/components/FinalCTA'
+import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
+import ScrollToTop from '@/components/ScrollToTop'
 
 export default function Home() {
   return (
@@ -18,8 +19,9 @@ export default function Home() {
       <Results />
       <Packages />
       <Trust />
-      <FinalCTA />
+      <Contact />
       <Footer />
+      <ScrollToTop />
     </main>
   )
 }
