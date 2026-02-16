@@ -1,14 +1,19 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger)
+}
 
 const packages = [
   {
-    name: 'Lead Generate',
-    price: 'From $___/mo',
-    ideal: 'Service businesses ready to scale',
+    name: 'Starter',
+    price: 'From $2,500',
+    period: '/mo',
+    ideal: 'Perfect for businesses ready to scale',
     features: [
       'Custom lead generation funnel',
       'Google Ads campaign setup',
@@ -21,124 +26,181 @@ const packages = [
     popular: false,
   },
   {
-    name: 'Lead Generate + Add-ons',
-    price: 'From $___/mo',
-    ideal: 'Businesses wanting integrated marketing',
+    name: 'Professional',
+    price: 'From $4,500',
+    period: '/mo',
+    ideal: 'Most popular for growing businesses',
     features: [
-      'Everything in Lead Generate',
+      'Everything in Starter',
       'Google Ads management',
       'Website updates & optimization',
       'Basic graphic design support',
       'Enhanced reporting dashboard',
-    ],
-    cta: 'Get Started',
-    popular: false,
-  },
-  {
-    name: 'All-In Lead Engine',
-    price: 'From $___/mo',
-    ideal: 'Complete marketing solution',
-    features: [
-      'Everything in Lead Generate + Add-ons',
-      'Full website development',
-      'Professional graphic design',
-      'Videography & content creation',
-      'Multi-channel campaign management',
-      'Priority support & strategy calls',
+      'Priority support',
     ],
     cta: 'Get Started',
     popular: true,
   },
+  {
+    name: 'Enterprise',
+    price: 'From $7,500',
+    period: '/mo',
+    ideal: 'Complete marketing solution',
+    features: [
+      'Everything in Professional',
+      'Full website development',
+      'Professional graphic design',
+      'Videography & content creation',
+      'Multi-channel campaign management',
+      'Weekly strategy calls',
+    ],
+    cta: 'Get Started',
+    popular: false,
+  },
 ]
 
 export default function Packages() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const cardsRef = useRef<HTMLDivElement[]>([])
+
+  useEffect(() => {
+    if (!sectionRef.current) return
+
+    cardsRef.current.forEach((card, index) => {
+      if (!card) return
+
+      gsap.fromTo(
+        card,
+        {
+          opacity: 0,
+          y: 50,
+          scale: 0.95,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.8,
+          delay: index * 0.15,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 80%',
+            toggleActions: 'play none none none',
+          },
+        }
+      )
+
+      // Hover animation
+      const handleMouseEnter = () => {
+        gsap.to(card, {
+          scale: 1.05,
+          y: -8,
+          duration: 0.3,
+          ease: 'power2.out',
+        })
+      }
+
+      const handleMouseLeave = () => {
+        gsap.to(card, {
+          scale: 1,
+          y: 0,
+          duration: 0.3,
+          ease: 'power2.out',
+        })
+      }
+
+      card.addEventListener('mouseenter', handleMouseEnter)
+      card.addEventListener('mouseleave', handleMouseLeave)
+
+      return () => {
+        card.removeEventListener('mouseenter', handleMouseEnter)
+        card.removeEventListener('mouseleave', handleMouseLeave)
+      }
+    })
+  }, [])
+
+  const scrollToCTA = () => {
+    const element = document.getElementById('final-cta')
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
 
   return (
-    <section 
-      id="packages" 
-      ref={ref} 
-      className="py-40 px-4 sm:px-6 lg:px-8 bg-white"
-      style={{
-        background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 50%, #fafafa 100%), radial-gradient(ellipse at top right, rgba(255, 199, 0, 0.1) 0%, transparent 50%)'
-      }}
-    >
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="text-center mb-24"
-        >
-          <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-8 tracking-tight text-black">
-            Choose Your Package
+    <section id="packages" ref={sectionRef} className="bg-white">
+      <div className="container-custom">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
+            Choose Your <span className="gradient-text">Package</span>
           </h2>
-          <p className="text-xl sm:text-2xl text-gray-700 max-w-3xl mx-auto font-light">
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Flexible options to match your business needs and growth stage.
           </p>
-        </motion.div>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-8">
           {packages.map((pkg, index) => (
-            <motion.div
-              key={pkg.name}
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.15, ease: 'easeOut' }}
-              whileHover={{ y: -8 }}
-              className={`relative p-10 rounded-3xl border transition-all hover-lift ${
+            <div
+              key={index}
+              ref={(el) => {
+                if (el) cardsRef.current[index] = el
+              }}
+              className={`card relative ${
                 pkg.popular
-                  ? 'bg-gradient-to-br from-yellow-accent/20 via-yellow-accent/10 to-white border-yellow-accent/50 scale-105 shadow-2xl shadow-yellow-accent/20'
-                  : 'bg-white border-gray-200 shadow-lg'
+                  ? 'border-2 border-primary-500 shadow-glow bg-gradient-to-br from-primary-50 to-white'
+                  : ''
               }`}
             >
               {pkg.popular && (
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={isInView ? { scale: 1 } : {}}
-                  transition={{ delay: 0.3 + index * 0.15, type: 'spring' }}
-                  className="absolute -top-5 left-1/2 -translate-x-1/2 px-5 py-1.5 bg-yellow-accent text-black text-sm font-bold rounded-full shadow-lg"
-                >
-                  Most Popular
-                </motion.div>
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <span className="bg-gradient-to-r from-primary-600 to-accent-600 text-white px-4 py-1 rounded-full text-sm font-bold shadow-lg">
+                    Most Popular
+                  </span>
+                </div>
               )}
+
+              <h3 className="text-3xl font-bold mb-2 text-gray-900">{pkg.name}</h3>
               
-              <h3 className="text-3xl font-bold mb-3 text-black">{pkg.name}</h3>
-              <div className="text-5xl font-bold mb-4 text-yellow-accent">{pkg.price}</div>
-              <p className="text-gray-600 mb-8 text-lg">{pkg.ideal}</p>
+              <div className="mb-4">
+                <span className="text-5xl font-bold gradient-text">{pkg.price}</span>
+                <span className="text-gray-600 text-lg">{pkg.period}</span>
+              </div>
               
-              <ul className="space-y-4 mb-10">
+              <p className="text-gray-600 mb-8">{pkg.ideal}</p>
+
+              <ul className="space-y-4 mb-8">
                 {pkg.features.map((feature, idx) => (
-                  <motion.li
-                    key={feature}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ delay: 0.4 + index * 0.15 + idx * 0.05 }}
-                    className="flex items-start"
-                  >
-                    <span className="text-yellow-accent mr-3 text-xl">✓</span>
-                    <span className="text-gray-700 leading-relaxed">{feature}</span>
-                  </motion.li>
+                  <li key={idx} className="flex items-start">
+                    <svg
+                      className="w-6 h-6 text-primary-600 mr-3 flex-shrink-0 mt-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    <span className="text-gray-700">{feature}</span>
+                  </li>
                 ))}
               </ul>
-              
-              <motion.button
-                whileHover={{ scale: 1.05, boxShadow: pkg.popular ? '0 10px 30px rgba(255, 199, 0, 0.4)' : '0 10px 30px rgba(0, 0, 0, 0.1)' }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => {
-                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
-                }}
-                aria-label={`Get started with ${pkg.name}`}
-                className={`w-full py-4 rounded-full font-bold transition-all text-lg ${
+
+              <button
+                onClick={scrollToCTA}
+                className={`w-full py-4 rounded-full font-bold text-lg transition-all duration-300 ${
                   pkg.popular
-                    ? 'bg-yellow-accent text-black hover:bg-yellow-accent/90 shadow-lg shadow-yellow-accent/30'
-                    : 'bg-gray-900 text-white hover:bg-black border border-gray-800'
+                    ? 'btn-primary'
+                    : 'btn-secondary'
                 }`}
               >
                 {pkg.cta}
-              </motion.button>
-            </motion.div>
+              </button>
+            </div>
           ))}
         </div>
       </div>

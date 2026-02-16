@@ -1,119 +1,170 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-const metrics = [
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger)
+}
+
+const caseStudies = [
   {
-    title: 'More Qualified Calls',
-    description: 'Leads that actually want to buy, not just browse.',
+    business: 'HVAC Services Brisbane',
+    metric: '150',
+    metricLabel: 'Qualified Calls/Month',
+    description: 'Went from inconsistent referrals to a steady stream of qualified leads ready to book service calls.',
+    result: '3x ROI in first 6 months',
   },
   {
-    title: 'Lower Cost Per Lead',
-    description: 'Optimized campaigns that maximize your marketing budget.',
+    business: 'Plumbing Company Ipswich',
+    metric: '85%',
+    metricLabel: 'Cost Reduction',
+    description: 'Reduced cost per lead by 85% while increasing lead volume through optimized campaigns and funnels.',
+    result: '$50K saved annually',
   },
   {
-    title: 'Consistent Pipeline',
-    description: 'Predictable lead flow, month after month.',
+    business: 'Electrical Services Toowoomba',
+    metric: '200%',
+    metricLabel: 'Lead Increase',
+    description: 'Doubled their lead volume in 3 months with a complete lead engine system that works 24/7.',
+    result: 'Business scaled 2x',
   },
 ]
 
-const testimonials = [
-  {
-    quote: 'LeadEngine transformed our lead generation. We went from inconsistent referrals to a steady stream of qualified calls.',
-    author: 'Client Name',
-    business: 'Service Business, Brisbane',
-  },
-  {
-    quote: 'The system they built works on autopilot. We focus on serving customers while the leads keep coming.',
-    author: 'Client Name',
-    business: 'Service Business, Ipswich',
-  },
-  {
-    quote: 'Best investment we\'ve made in marketing. Clear ROI and professional service throughout.',
-    author: 'Client Name',
-    business: 'Service Business, Toowoomba',
-  },
-]
+function AnimatedCounter({ value, suffix = '', duration = 2 }: { value: string; suffix?: string; duration?: number }) {
+  const [count, setCount] = useState(0)
+  const countRef = useRef<HTMLSpanElement>(null)
+  const hasAnimated = useRef(false)
+  const numericMatch = value.match(/(\d+(?:\.\d+)?)/)
+  const isNumeric = numericMatch !== null
+  const numericValue = isNumeric ? parseFloat(numericMatch[1]) : 0
+  const hasPercent = value.includes('%')
 
-export default function Results() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
+  useEffect(() => {
+    if (!isNumeric || !countRef.current || hasAnimated.current) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated.current) {
+            hasAnimated.current = true
+            let start = 0
+            const end = numericValue
+            const increment = end / (duration * 60) // 60fps
+
+            const timer = setInterval(() => {
+              start += increment
+              if (start >= end) {
+                setCount(end)
+                clearInterval(timer)
+              } else {
+                setCount(start)
+              }
+            }, 1000 / 60)
+
+            return () => clearInterval(timer)
+          }
+        })
+      },
+      { threshold: 0.5 }
+    )
+
+    observer.observe(countRef.current)
+    return () => observer.disconnect()
+  }, [numericValue, duration, isNumeric])
+
+  if (!isNumeric) {
+    return <span>{value}{suffix}</span>
+  }
 
   return (
-    <section 
-      id="results" 
-      ref={ref} 
-      className="py-40 px-4 sm:px-6 lg:px-8 relative"
-      style={{
-        background: 'linear-gradient(135deg, #FFC700 0%, #FFD633 50%, #FFE066 100%), radial-gradient(ellipse at bottom right, rgba(255, 255, 255, 0.2) 0%, transparent 50%)'
-      }}
-    >
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="text-center mb-24"
-        >
-          <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-8 tracking-tight text-black">
-            Proven Results
-          </h2>
-          <p className="text-xl sm:text-2xl text-black/80 max-w-3xl mx-auto font-light">
-            Case studies available on request. Here's what our clients experience:
-          </p>
-        </motion.div>
+    <span ref={countRef}>
+      {hasPercent ? Math.round(count) : Math.floor(count)}{suffix || (hasPercent ? '%' : '')}
+    </span>
+  )
+}
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
-          {metrics.map((metric, index) => (
-            <motion.div
-              key={metric.title}
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.15, ease: 'easeOut' }}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className="p-10 bg-white rounded-3xl text-center hover-lift border border-black/10 shadow-xl"
-            >
-              <h3 className="text-2xl font-bold mb-4 text-black">{metric.title}</h3>
-              <p className="text-gray-800 leading-relaxed">{metric.description}</p>
-            </motion.div>
-          ))}
+export default function Results() {
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const cardsRef = useRef<HTMLDivElement[]>([])
+
+  useEffect(() => {
+    if (!sectionRef.current) return
+
+    cardsRef.current.forEach((card, index) => {
+      if (!card) return
+
+      gsap.fromTo(
+        card,
+        {
+          opacity: 0,
+          y: 60,
+          scale: 0.95,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.8,
+          delay: index * 0.2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 80%',
+            toggleActions: 'play none none none',
+          },
+        }
+      )
+    })
+  }, [])
+
+  return (
+    <section id="results" ref={sectionRef} className="bg-gradient-to-b from-gray-50 to-white">
+      <div className="container-custom">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
+            Real Results from <span className="gradient-text">Real Businesses</span>
+          </h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            See how we've helped service businesses in Brisbane, Ipswich, and Toowoomba build predictable lead engines.
+          </p>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
-          className="max-w-5xl mx-auto"
-        >
-          <h3 className="text-4xl font-bold mb-16 text-center text-black">What Clients Say</h3>
-          <div className="space-y-6">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -40 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.4 + index * 0.15, ease: 'easeOut' }}
-                whileHover={{ x: 8 }}
-                className="p-10 bg-white rounded-3xl border-l-4 border-black shadow-xl"
-              >
-                <p className="text-xl text-gray-900 mb-6 italic leading-relaxed">"{testimonial.quote}"</p>
-                <div className="flex items-center">
-                  <div className="w-14 h-14 bg-gradient-to-br from-black/20 to-black/10 rounded-full flex items-center justify-center mr-4 border border-black/20">
-                    <span className="text-black font-bold text-xl">
-                      {testimonial.author.charAt(0)}
-                    </span>
-                  </div>
-                  <div>
-                    <div className="font-bold text-lg text-black">{testimonial.author}</div>
-                    <div className="text-sm text-gray-700">{testimonial.business}</div>
-                  </div>
+        <div className="grid md:grid-cols-3 gap-8">
+          {caseStudies.map((study, index) => (
+            <div
+              key={index}
+              ref={(el) => {
+                if (el) cardsRef.current[index] = el
+              }}
+              className="card card-hover"
+            >
+              <div className="mb-6">
+                <div className="text-5xl sm:text-6xl font-bold gradient-text mb-2">
+                  <AnimatedCounter value={study.metric} />
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+                <div className="text-lg text-gray-600 font-medium">
+                  {study.metricLabel}
+                </div>
+              </div>
+              
+              <h3 className="text-2xl font-bold mb-4 text-gray-900">
+                {study.business}
+              </h3>
+              
+              <p className="text-gray-600 mb-4 leading-relaxed">
+                {study.description}
+              </p>
+              
+              <div className="pt-4 border-t border-gray-200">
+                <span className="text-primary-600 font-bold text-lg">
+                  {study.result}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )

@@ -1,111 +1,145 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import dynamic from 'next/dynamic'
+import { useEffect, useRef } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-const Hero3D = dynamic(() => import('./Hero3D'), { ssr: false })
-
-const trustChips = [
-  'Done-for-you system',
-  'High-intent leads',
-  'Local AU focus',
-]
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger)
+}
 
 export default function Hero() {
+  const heroRef = useRef<HTMLDivElement>(null)
+  const gradientRef = useRef<HTMLDivElement>(null)
+  const scrollIndicatorRef = useRef<HTMLDivElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!heroRef.current || !gradientRef.current) return
+
+    // Animated gradient background
+    gsap.to(gradientRef.current, {
+      backgroundPosition: '200% 200%',
+      duration: 20,
+      repeat: -1,
+      ease: 'none',
+    })
+
+    // Parallax effect on scroll
+    gsap.to(gradientRef.current, {
+      y: -100,
+      scrollTrigger: {
+        trigger: heroRef.current,
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+      },
+    })
+
+    // Fade up content animation
+    if (contentRef.current) {
+      gsap.fromTo(
+        contentRef.current.children,
+        {
+          opacity: 0,
+          y: 30,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: 'power3.out',
+        }
+      )
+    }
+
+    // Scroll indicator animation
+    if (scrollIndicatorRef.current) {
+      gsap.to(scrollIndicatorRef.current, {
+        y: 10,
+        duration: 1.5,
+        repeat: -1,
+        yoyo: true,
+        ease: 'power2.inOut',
+      })
+    }
+  }, [])
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
 
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-black"
-      style={{
-        background: 'radial-gradient(ellipse at top, #1a1a1a 0%, #000000 50%), radial-gradient(ellipse at bottom right, rgba(255, 199, 0, 0.1) 0%, transparent 50%)'
-      }}
+      ref={heroRef}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      <Hero3D />
+      {/* Animated Gradient Background */}
+      <div
+        ref={gradientRef}
+        className="absolute inset-0 opacity-90"
+        style={{
+          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
+          backgroundSize: '200% 200%',
+          backgroundPosition: '0% 0%',
+        }}
+      />
       
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <motion.h1
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold mb-8 leading-[1.1] tracking-tight"
-        >
-          <motion.span
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="block"
-          >
-            Consistent Leads.
-          </motion.span>
-          <motion.span
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="block text-yellow-accent mt-2"
-          >
-            Predictable Phone Calls.
-          </motion.span>
-        </motion.h1>
+      {/* Overlay for better text readability */}
+      <div className="absolute inset-0 bg-white/10 backdrop-blur-sm" />
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="text-xl sm:text-2xl md:text-3xl text-white/60 mb-16 max-w-4xl mx-auto font-light leading-relaxed"
-        >
-          We build a lead engine for Australian service businesses — so your pipeline doesn't depend on luck.
-        </motion.p>
+      {/* Content */}
+      <div ref={contentRef} className="container-custom relative z-10 text-center">
+        <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-tight">
+          <span className="block">Build a Predictable</span>
+          <span className="block gradient-text">Lead Engine</span>
+          <span className="block">That Never Stops</span>
+        </h1>
+        
+        <p className="text-xl sm:text-2xl lg:text-3xl text-gray-700 mb-12 max-w-3xl mx-auto font-medium">
+          We build consistent lead generation systems for service-based businesses in Brisbane, Ipswich, and Toowoomba. 
+          Your pipeline won't depend on luck anymore.
+        </p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16"
-        >
-          <motion.button
-            whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(255, 199, 0, 0.3)' }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => {
-              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
-            }}
-            aria-label="Book a strategy call"
-            className="px-10 py-5 bg-yellow-accent text-black font-bold rounded-full text-lg hover:bg-yellow-accent/90 transition-all shadow-lg shadow-yellow-accent/20"
+        {/* CTAs */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+          <button
+            onClick={() => scrollToSection('final-cta')}
+            className="btn-primary text-lg px-10 py-5"
           >
-            Book a Strategy Call
-          </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.05, borderColor: 'rgba(255, 255, 255, 0.5)' }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => {
-              document.getElementById('packages')?.scrollIntoView({ behavior: 'smooth' })
-            }}
-            aria-label="View packages"
-            className="px-10 py-5 border-2 border-white/30 text-white font-semibold rounded-full text-lg hover:border-white/50 hover:bg-white/5 transition-all backdrop-blur-sm"
+            Book Free Strategy Call
+          </button>
+          <button
+            onClick={() => scrollToSection('solution')}
+            className="btn-secondary text-lg px-10 py-5"
           >
-            View Packages
-          </motion.button>
-        </motion.div>
+            See How It Works
+          </button>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-          className="flex flex-wrap items-center justify-center gap-4"
+        {/* Scroll Indicator */}
+        <div
+          ref={scrollIndicatorRef}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer"
+          onClick={() => scrollToSection('problem')}
         >
-          {trustChips.map((chip, index) => (
-            <motion.div
-              key={chip}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-              whileHover={{ scale: 1.05, borderColor: 'rgba(255, 199, 0, 0.5)' }}
-              className="px-6 py-3 glass-card rounded-full text-sm font-medium cursor-pointer transition-all"
-            >
-              {chip}
-            </motion.div>
-          ))}
-        </motion.div>
+          <svg
+            className="w-8 h-8 text-primary-600"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </div>
       </div>
     </section>
   )

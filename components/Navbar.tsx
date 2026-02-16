@@ -4,21 +4,25 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const navLinks = [
-  { name: 'Services', href: '#services' },
-  { name: 'Packages', href: '#packages' },
+  { name: 'How It Works', href: '#solution' },
   { name: 'Results', href: '#results' },
-  { name: 'Process', href: '#process' },
-  { name: 'Locations', href: '#locations' },
-  { name: 'FAQs', href: '#faqs' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'Packages', href: '#packages' },
+  { name: 'Trust', href: '#trust' },
 ]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
-  const [activeSection, setActiveSection] = useState('')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden'
@@ -29,28 +33,6 @@ export default function Navbar() {
       document.body.style.overflow = 'unset'
     }
   }, [mobileMenuOpen])
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
-      
-      // Update active section based on scroll position
-      const sections = navLinks.map(link => link.href.substring(1))
-      const current = sections.find(section => {
-        const element = document.getElementById(section)
-        if (element) {
-          const rect = element.getBoundingClientRect()
-          return rect.top <= 150 && rect.bottom >= 150
-        }
-        return false
-      })
-      if (current) setActiveSection(current)
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll()
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href)
@@ -67,21 +49,20 @@ export default function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
         className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
-          scrolled 
-            ? 'bg-black/90 backdrop-blur-xl border-b border-white/10 shadow-lg' 
-            : 'bg-transparent'
+          scrolled
+            ? 'bg-white/95 backdrop-blur-xl border-b border-gray-200 shadow-lg'
+            : 'bg-white/80 backdrop-blur-sm'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-24">
+        <div className="container-custom">
+          <div className="flex items-center justify-between h-20">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="text-2xl font-bold cursor-pointer bg-transparent border-none text-white tracking-tight"
               onClick={() => scrollToSection('#hero')}
-              aria-label="Go to homepage"
+              className="text-2xl font-bold cursor-pointer bg-transparent border-none"
             >
-              LeadEngine <span className="text-yellow-accent">AU</span>
+              <span className="gradient-text">LeadEngine</span> AU
             </motion.button>
 
             <div className="hidden lg:flex items-center space-x-1">
@@ -89,44 +70,28 @@ export default function Navbar() {
                 <motion.button
                   key={link.name}
                   onClick={() => scrollToSection(link.href)}
-                  aria-label={`Navigate to ${link.name} section`}
                   whileHover={{ y: -2 }}
-                  className={`relative px-4 py-2 text-sm font-medium transition-colors bg-transparent border-none rounded-lg ${
-                    activeSection === link.href.substring(1)
-                      ? 'text-yellow-accent'
-                      : 'text-white/70 hover:text-white hover:bg-white/5'
-                  }`}
+                  className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 transition-colors bg-transparent border-none rounded-lg hover:bg-primary-50"
                 >
                   {link.name}
-                  {activeSection === link.href.substring(1) && (
-                    <motion.div
-                      layoutId="activeSection"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-yellow-accent rounded-full"
-                      aria-hidden="true"
-                      transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-                    />
-                  )}
                 </motion.button>
               ))}
             </div>
 
             <div className="flex items-center gap-4">
               <motion.button
-                whileHover={{ scale: 1.05, boxShadow: '0 5px 15px rgba(255, 199, 0, 0.3)' }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => scrollToSection('#contact')}
-                aria-label="Book a call"
-                className="hidden sm:block px-6 py-3 bg-yellow-accent text-black font-bold rounded-full hover:bg-yellow-accent/90 transition-all text-sm shadow-lg shadow-yellow-accent/20"
+                onClick={() => scrollToSection('#final-cta')}
+                className="hidden sm:block btn-primary text-sm px-6 py-3"
               >
-                Book a Call
+                Book Free Call
               </motion.button>
 
               <motion.button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                aria-label="Toggle mobile menu"
-                aria-expanded={mobileMenuOpen}
                 whileTap={{ scale: 0.9 }}
-                className="lg:hidden p-2 text-white rounded-lg hover:bg-white/10 transition-colors z-[101] relative"
+                className="lg:hidden p-2 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors z-[101] relative"
               >
                 <svg
                   className="w-6 h-6"
@@ -149,43 +114,34 @@ export default function Navbar() {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu Overlay - Outside navbar for proper positioning */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
               onClick={() => setMobileMenuOpen(false)}
-              className="fixed inset-0 bg-black/80 backdrop-blur-md z-[99] lg:hidden"
-              style={{ top: 0, left: 0, right: 0, bottom: 0 }}
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[99] lg:hidden"
             />
-            
-            {/* Menu Panel */}
             <motion.div
               initial={{ x: '-100%' }}
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 left-0 bottom-0 w-80 max-w-[85vw] bg-black/95 backdrop-blur-xl border-r border-white/10 z-[100] lg:hidden overflow-y-auto"
-              style={{ top: 0, left: 0, bottom: 0 }}
+              className="fixed top-0 left-0 bottom-0 w-80 max-w-[85vw] bg-white border-r border-gray-200 z-[100] lg:hidden overflow-y-auto shadow-xl"
             >
-              {/* Header */}
-              <div className="flex items-center justify-between p-6 border-b border-white/10">
-                <h2 className="text-2xl font-bold text-white">
-                  LeadEngine <span className="text-yellow-accent">AU</span>
+              <div className="flex items-center justify-between p-6 border-b border-gray-200">
+                <h2 className="text-2xl font-bold">
+                  <span className="gradient-text">LeadEngine</span> AU
                 </h2>
                 <motion.button
                   onClick={() => setMobileMenuOpen(false)}
-                  aria-label="Close menu"
                   whileTap={{ scale: 0.9 }}
-                  className="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
+                  className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors"
                 >
                   <svg
-                    className="w-6 h-6 text-white"
+                    className="w-6 h-6 text-gray-700"
                     fill="none"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -198,7 +154,6 @@ export default function Navbar() {
                 </motion.button>
               </div>
 
-              {/* Navigation Links */}
               <div className="p-6 space-y-2">
                 {navLinks.map((link, index) => (
                   <motion.button
@@ -207,28 +162,23 @@ export default function Navbar() {
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: index * 0.05, duration: 0.3 }}
                     onClick={() => scrollToSection(link.href)}
-                    className={`block w-full text-left px-6 py-4 rounded-xl transition-all font-medium ${
-                      activeSection === link.href.substring(1)
-                        ? 'text-yellow-accent bg-yellow-accent/10 border-l-4 border-yellow-accent'
-                        : 'text-white/70 hover:text-white hover:bg-white/5'
-                    }`}
+                    className="block w-full text-left px-6 py-4 rounded-xl transition-all font-medium text-gray-700 hover:text-primary-600 hover:bg-primary-50"
                   >
                     {link.name}
                   </motion.button>
                 ))}
               </div>
 
-              {/* CTA Button */}
-              <div className="p-6 pt-4 border-t border-white/10">
+              <div className="p-6 pt-4 border-t border-gray-200">
                 <motion.button
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: navLinks.length * 0.05, duration: 0.3 }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={() => scrollToSection('#contact')}
-                  className="w-full px-6 py-4 bg-yellow-accent text-black font-bold rounded-full hover:bg-yellow-accent/90 transition-all shadow-lg shadow-yellow-accent/20"
+                  onClick={() => scrollToSection('#final-cta')}
+                  className="w-full btn-primary"
                 >
-                  Book a Call
+                  Book Free Call
                 </motion.button>
               </div>
             </motion.div>

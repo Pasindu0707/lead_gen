@@ -3,10 +3,10 @@
 import { motion } from 'framer-motion'
 
 const quickLinks = [
-  { name: 'Services', href: '#services' },
+  { name: 'How It Works', href: '#solution' },
+  { name: 'Results', href: '#results' },
   { name: 'Packages', href: '#packages' },
-  { name: 'Process', href: '#process' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'Trust', href: '#trust' },
 ]
 
 const serviceAreas = ['Brisbane', 'Ipswich', 'Toowoomba']
@@ -20,14 +20,9 @@ export default function Footer() {
   }
 
   return (
-    <footer 
-      className="border-t border-white/10 py-20 px-4 sm:px-6 lg:px-8 relative bg-black"
-      style={{
-        background: 'radial-gradient(ellipse at top, rgba(255, 199, 0, 0.05) 0%, #000000 50%), radial-gradient(ellipse at bottom, #1a1a1a 0%, #000000 100%)'
-      }}
-    >
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+    <footer className="bg-gray-900 text-white py-16">
+      <div className="container-custom">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -35,9 +30,9 @@ export default function Footer() {
             transition={{ duration: 0.6 }}
           >
             <h3 className="text-3xl font-bold mb-6">
-              LeadEngine <span className="text-yellow-accent">AU</span>
+              <span className="gradient-text">LeadEngine</span> AU
             </h3>
-            <p className="text-white/70 leading-relaxed">
+            <p className="text-gray-400 leading-relaxed">
               Consistent leads. Predictable phone calls. Built for Australian service businesses.
             </p>
           </motion.div>
@@ -54,8 +49,7 @@ export default function Footer() {
                 <li key={link.name}>
                   <button
                     onClick={() => scrollToSection(link.href)}
-                    aria-label={`Navigate to ${link.name} section`}
-                    className="text-white/70 hover:text-yellow-accent transition-colors bg-transparent border-none text-left"
+                    className="text-gray-400 hover:text-primary-400 transition-colors bg-transparent border-none text-left"
                   >
                     {link.name}
                   </button>
@@ -73,7 +67,7 @@ export default function Footer() {
             <h4 className="font-bold mb-6 text-lg">Service Areas</h4>
             <ul className="space-y-3">
               {serviceAreas.map((area) => (
-                <li key={area} className="text-white/70">
+                <li key={area} className="text-gray-400">
                   {area}
                 </li>
               ))}
@@ -92,8 +86,7 @@ export default function Footer() {
                 <li key={social}>
                   <a
                     href="#"
-                    aria-label={`Visit our ${social} page`}
-                    className="text-white/70 hover:text-yellow-accent transition-colors"
+                    className="text-gray-400 hover:text-primary-400 transition-colors"
                   >
                     {social}
                   </a>
@@ -108,7 +101,7 @@ export default function Footer() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="pt-8 border-t border-white/10 text-center text-white/60"
+          className="pt-8 border-t border-gray-800 text-center text-gray-400"
         >
           <p>&copy; {new Date().getFullYear()} LeadEngine AU. All rights reserved.</p>
         </motion.div>

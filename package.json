@@ -4,8 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:local": "cross-env GITHUB_PAGES=false next dev",
     "build": "next build",
+    "build:pages": "cross-env GITHUB_PAGES=true NODE_ENV=production next build",
     "start": "next start",
+    "serve": "npx serve out -p 3000",
     "lint": "next lint"
   },
   "dependencies": {
@@ -13,6 +16,7 @@
     "@react-three/fiber": "^8.15.0",
     "animejs": "^4.3.6",
     "framer-motion": "^11.0.0",
+    "gsap": "^3.14.2",
     "next": "^14.2.0",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
