@@ -11,6 +11,8 @@ const navLinks = [
   { name: 'Trust', href: '#trust' },
 ]
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -96,7 +98,7 @@ export default function Navbar() {
               className="flex items-center cursor-pointer bg-transparent border-none p-0 h-14"
             >
               <Image
-                src="/logo.webp"
+                src={`${basePath}/logo.webp`}
                 alt="LeadEngine AU"
                 width={220}
                 height={56}
@@ -188,7 +190,7 @@ export default function Navbar() {
             >
               <div className="flex items-center justify-between p-6 border-b border-gray-200">
                 <Image
-                  src="/logo.webp"
+                  src={`${basePath}/logo.webp`}
                   alt="LeadEngine AU"
                   width={200}
                   height={52}

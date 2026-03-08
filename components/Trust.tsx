@@ -9,6 +9,8 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
 }
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+
 const logos = [
   { src: '/logos/cfq-logo.png', alt: 'Clean Force QLD' },
   { src: '/logos/logo-2.jpg', alt: 'Nook FM' },
@@ -107,7 +109,7 @@ export default function Trust() {
                 className="w-full h-28 sm:h-32 bg-white border border-gray-200 rounded-card shadow-soft flex items-center justify-center p-5 grayscale hover:grayscale-0 opacity-90 hover:opacity-100 transition-all duration-300"
               >
                 <Image
-                  src={logo.src}
+                  src={`${basePath}${logo.src}`}
                   alt={logo.alt}
                   width={180}
                   height={100}

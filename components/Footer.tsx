@@ -12,6 +12,8 @@ const quickLinks = [
 
 const serviceAreas = ['Brisbane', 'Ipswich', 'Toowoomba']
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+
 export default function Footer() {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href)
@@ -32,7 +34,7 @@ export default function Footer() {
           >
             <div className="mb-6">
               <Image
-                src="/logo.webp"
+                src={`${basePath}/logo.webp`}
                 alt="LeadEngine AU"
                 width={220}
                 height={56}
