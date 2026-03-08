@@ -195,7 +195,7 @@ export default function Hero() {
           <span className="block">That Never Stops</span>
         </h1>
         
-        <p className="text-xl sm:text-2xl lg:text-3xl text-white/80 mb-12 max-w-3xl mx-auto font-medium">
+        <p className="text-base sm:text-lg lg:text-xl text-white/80 mb-12 max-w-3xl mx-auto font-medium">
           We build consistent lead generation systems for service-based businesses in Brisbane, Ipswich, and Toowoomba. 
           Your pipeline won't depend on luck anymore.
         </p>

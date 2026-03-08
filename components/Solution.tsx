@@ -11,18 +11,18 @@ if (typeof window !== 'undefined') {
 const steps = [
   {
     number: '01',
-    title: 'Strategy & Setup',
-    description: 'We analyze your business, target audience, and competition to create a custom lead generation strategy tailored to your service.',
+    title: 'Plan Together',
+    description: 'We look at your business, who you want to reach, and who else is out there. Then we design a clear plan to get you more customers.',
   },
   {
     number: '02',
-    title: 'System Implementation',
-    description: 'We build and deploy your lead engine with automated funnels, landing pages, and conversion systems that work 24/7.',
+    title: 'We Build It',
+    description: 'We create your ads, your landing page, and the way leads get to you. It runs all the time so you don\'t miss opportunities.',
   },
   {
     number: '03',
-    title: 'Optimize & Scale',
-    description: 'We continuously monitor, test, and optimize your system to increase leads and ROI, then scale what works.',
+    title: 'Improve and Grow',
+    description: 'We keep an eye on what\'s working, tweak things, and do more of what brings in leads and sales.',
   },
 ]
 
@@ -88,7 +88,7 @@ export default function Solution() {
             How Our <span className="text-yellow-accent">Lead Engine</span> Works
           </h2>
           <p className="text-xl text-gray-700 max-w-2xl mx-auto">
-            A proven 3-step process to build a predictable lead generation system for your business.
+            A simple 3-step process to get you more customers, without the guesswork.
           </p>
         </div>
 

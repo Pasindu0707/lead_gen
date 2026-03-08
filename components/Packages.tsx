@@ -10,53 +10,65 @@ if (typeof window !== 'undefined') {
 
 const packages = [
   {
-    name: 'Starter',
-    price: 'From $2,500',
-    period: '/mo',
-    ideal: 'Perfect for businesses ready to scale',
+    name: 'Social Media Growth',
+    price: '$769',
+    period: '/ month',
+    ideal: 'Strong brand presence with content and reels',
     features: [
-      'Custom lead generation funnel',
-      'Google Ads campaign setup',
-      'Landing page optimization',
-      'Call tracking & analytics',
-      'Monthly reporting',
-      'Dedicated account manager',
+      '8 social media posts per month',
+      'Cinematic reels creation',
+      'Page management and scheduling',
+      'Captions and hashtag strategy',
+      'Community engagement support',
+      'Monthly insights report',
     ],
     cta: 'Get Started',
     popular: false,
   },
   {
-    name: 'Professional',
-    price: 'From $4,500',
-    period: '/mo',
-    ideal: 'Most popular for growing businesses',
+    name: 'Lead Engine Growth',
+    price: '$879',
+    period: '/ month',
+    ideal: 'Focused ad campaigns and automated lead capture',
     features: [
-      'Everything in Starter',
-      'Google Ads management',
-      'Website updates & optimization',
-      'Basic graphic design support',
-      'Enhanced reporting dashboard',
-      'Priority support',
+      'Lead Engine funnel setup',
+      'Meta Ads campaign management',
+      'Ad targeting and improving',
+      'Retargeting campaigns',
+      'Lead tracking and monthly reporting',
+      'Improving results over time',
+      'Google Ads',
     ],
     cta: 'Get Started',
     popular: true,
   },
   {
-    name: 'Enterprise',
-    price: 'From $7,500',
-    period: '/mo',
-    ideal: 'Complete marketing solution',
+    name: 'Lead Engine Pro',
+    price: '$1,299',
+    period: '/ month',
+    ideal: 'Full lead automation system',
     features: [
-      'Everything in Professional',
-      'Full website development',
-      'Professional graphic design',
-      'Videography & content creation',
-      'Multi-channel campaign management',
-      'Weekly strategy calls',
+      'Lead Engine setup (funnels and automation)',
+      'Landing page design and creation',
+      'Meta Ads management (Facebook and Instagram)',
+      'Google Ads management',
+      '8 professional social media posts per month',
+      'Marketing creatives',
+      'Retargeting campaign setup',
+      'Lead tracking and performance reporting',
+      'Strategy to improve results',
     ],
     cta: 'Get Started',
     popular: false,
   },
+]
+
+const subservices = [
+  'Social media management',
+  'Video Productions',
+  'Web design and Development',
+  'Brand design',
+  'SEO (Google Ads)',
 ]
 
 export default function Packages() {
@@ -135,7 +147,7 @@ export default function Packages() {
             Choose Your <span className="text-yellow-accent">Package</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Flexible options to match your business needs and growth stage.
+            Flexible options to match your business and where you want to grow.
           </p>
         </div>
 
@@ -146,7 +158,7 @@ export default function Packages() {
               ref={(el) => {
                 if (el) cardsRef.current[index] = el
               }}
-              className={`bg-white border rounded-card shadow-soft p-6 transition-all duration-300 relative ${
+              className={`flex flex-col bg-white border rounded-card shadow-soft p-6 transition-all duration-300 relative h-full ${
                 pkg.popular
                   ? 'border-yellow-accent shadow-glow scale-105'
                   : 'border-gray-200 hover:border-yellow-accent/50 hover:shadow-card'
@@ -167,9 +179,9 @@ export default function Packages() {
                 <span className="text-gray-600 text-lg">{pkg.period}</span>
               </div>
               
-              <p className="text-gray-600 mb-8">{pkg.ideal}</p>
+              <p className="text-gray-600 mb-6">{pkg.ideal}</p>
 
-              <ul className="space-y-4 mb-8">
+              <ul className="space-y-4 mb-6 flex-1">
                 {pkg.features.map((feature, idx) => (
                   <li key={idx} className="flex items-start">
                     <svg
@@ -192,7 +204,7 @@ export default function Packages() {
 
               <button
                 onClick={scrollToCTA}
-                className={`w-full py-4 rounded-full font-bold text-lg transition-all duration-300 ${
+                className={`mt-auto w-full py-4 rounded-full font-bold text-lg transition-all duration-300 ${
                   pkg.popular
                     ? 'bg-yellow-accent text-black hover:bg-yellow-accent/90 shadow-lg'
                     : 'bg-white text-yellow-accent border-2 border-yellow-accent hover:bg-yellow-accent/10'
@@ -202,6 +214,22 @@ export default function Packages() {
               </button>
             </div>
           ))}
+        </div>
+
+        <div className="mt-16 pt-12 border-t border-gray-200">
+          <h3 className="text-center text-xl font-semibold text-gray-700 mb-6">
+            Also available as separate services
+          </h3>
+          <div className="flex flex-wrap justify-center gap-3">
+            {subservices.map((service, index) => (
+              <span
+                key={index}
+                className="inline-flex items-center px-5 py-2.5 rounded-full bg-white border border-gray-200 text-gray-700 font-medium shadow-soft hover:border-yellow-accent/50 hover:text-gray-900 transition-colors"
+              >
+                {service}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </section>

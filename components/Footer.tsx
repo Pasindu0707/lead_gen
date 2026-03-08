@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 const quickLinks = [
@@ -29,9 +30,15 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className="text-3xl font-bold mb-6">
-              <span className="gradient-text">LeadEngine</span> AU
-            </h3>
+            <div className="mb-6">
+              <Image
+                src="/logo.webp"
+                alt="LeadEngine AU"
+                width={220}
+                height={56}
+                className="h-14 w-auto object-contain object-left"
+              />
+            </div>
             <p className="text-gray-400 leading-relaxed">
               Consistent leads. Predictable phone calls. Built for Australian service businesses.
             </p>

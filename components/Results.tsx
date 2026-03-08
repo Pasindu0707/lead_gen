@@ -12,22 +12,22 @@ const caseStudies = [
   {
     business: 'HVAC Services Brisbane',
     metric: '150',
-    metricLabel: 'Qualified Calls/Month',
-    description: 'Went from inconsistent referrals to a steady stream of qualified leads ready to book service calls.',
+    metricLabel: 'Calls per month',
+    description: 'Went from inconsistent referrals to a steady stream of leads ready to book service calls.',
     result: '3x ROI in first 6 months',
   },
   {
     business: 'Plumbing Company Ipswich',
     metric: '85%',
     metricLabel: 'Cost Reduction',
-    description: 'Reduced cost per lead by 85% while increasing lead volume through optimized campaigns and funnels.',
+    description: 'Cut cost per lead by 85% while getting more leads through better ads and follow-up.',
     result: '$50K saved annually',
   },
   {
     business: 'Electrical Services Toowoomba',
     metric: '200%',
     metricLabel: 'Lead Increase',
-    description: 'Doubled their lead volume in 3 months with a complete lead engine system that works 24/7.',
+    description: 'Doubled their lead volume in 3 months with a complete system that runs all the time.',
     result: 'Business scaled 2x',
   },
 ]
@@ -127,7 +127,7 @@ export default function Results() {
             <span className="text-gray-300">Real Results from</span> <span className="text-yellow-accent">Real Businesses</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            See how we've helped service businesses in Brisbane, Ipswich, and Toowoomba build predictable lead engines.
+            See how we've helped service businesses in Brisbane, Ipswich, and Toowoomba get more steady customers.
           </p>
         </div>
 

@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import Image from 'next/image'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -9,11 +10,11 @@ if (typeof window !== 'undefined') {
 }
 
 const logos = [
-  'Client Logo 1',
-  'Client Logo 2',
-  'Client Logo 3',
-  'Client Logo 4',
-  'Client Logo 5',
+  { src: '/logos/cfq-logo.png', alt: 'Clean Force QLD' },
+  { src: '/logos/logo-2.jpg', alt: 'Nook FM' },
+  { src: '/logos/logo-3.png', alt: 'YES! Entertainment Brisbane' },
+  { src: '/logos/logo-4.png', alt: 'Skymob FM' },
+  { src: '/logos/ceylon-curry-club.jpg', alt: 'Ceylon Curry Club' },
 ]
 
 const ratings = [
@@ -103,9 +104,15 @@ export default function Trust() {
             {logos.map((logo, index) => (
               <div
                 key={index}
-                className="w-full h-20 bg-white border border-yellow-accent rounded-card shadow-soft flex items-center justify-center text-gray-500 font-semibold text-sm"
+                className="w-full h-28 sm:h-32 bg-white border border-gray-200 rounded-card shadow-soft flex items-center justify-center p-5 grayscale hover:grayscale-0 opacity-90 hover:opacity-100 transition-all duration-300"
               >
-                {logo}
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={180}
+                  height={100}
+                  className="w-full h-full object-contain"
+                />
               </div>
             ))}
           </div>

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const navLinks = [
@@ -92,9 +93,16 @@ export default function Navbar() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => scrollToSection('#hero')}
-              className="text-2xl font-bold cursor-pointer bg-transparent border-none"
+              className="flex items-center cursor-pointer bg-transparent border-none p-0 h-14"
             >
-              <span className="gradient-text">LeadEngine</span> AU
+              <Image
+                src="/logo.webp"
+                alt="LeadEngine AU"
+                width={220}
+                height={56}
+                className="h-12 w-auto object-contain object-left"
+                priority
+              />
             </motion.button>
 
             <div className="hidden lg:flex items-center space-x-1">
@@ -179,9 +187,13 @@ export default function Navbar() {
               className="fixed top-0 left-0 bottom-0 w-80 max-w-[85vw] bg-black/95 backdrop-blur-xl border-r border-white/10 z-[100] lg:hidden overflow-y-auto shadow-xl"
             >
               <div className="flex items-center justify-between p-6 border-b border-gray-200">
-                <h2 className="text-2xl font-bold">
-                  <span className="gradient-text">LeadEngine</span> AU
-                </h2>
+                <Image
+                  src="/logo.webp"
+                  alt="LeadEngine AU"
+                  width={200}
+                  height={52}
+                  className="h-12 w-auto object-contain"
+                />
                 <motion.button
                   onClick={() => setMobileMenuOpen(false)}
                   whileTap={{ scale: 0.9 }}

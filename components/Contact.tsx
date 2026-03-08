@@ -49,8 +49,8 @@ export default function Contact() {
             <span className="text-yellow-accent">Predictable Lead Engine?</span>
           </h2>
           <p className="text-xl sm:text-2xl text-white/80 max-w-3xl mx-auto font-medium mb-8">
-            Book a free strategy call and discover how we can build a lead generation system 
-            that delivers consistent, qualified calls to your business.
+            Book a free strategy call and see how we can build a system that gets consistent, 
+            ready-to-book calls to your business.
           </p>
         </motion.div>
 
