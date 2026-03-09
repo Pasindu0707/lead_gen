@@ -12,11 +12,14 @@ if (typeof window !== 'undefined') {
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
 
 const logos = [
-  { src: '/logos/cfq-logo.png', alt: 'Clean Force QLD' },
-  { src: '/logos/logo-2.jpg', alt: 'Nook FM' },
-  { src: '/logos/logo-3.png', alt: 'YES! Entertainment Brisbane' },
-  { src: '/logos/logo-4.png', alt: 'Skymob FM' },
-  { src: '/logos/ceylon-curry-club.jpg', alt: 'Ceylon Curry Club' },
+  { src: '/logos/trust-1.png', alt: 'Trusted partner' },
+  { src: '/logos/trust-2.jpg', alt: 'Trusted partner' },
+  { src: '/logos/trust-3.jpg', alt: 'Trusted partner' },
+  { src: '/logos/trust-4.jpg', alt: 'Trusted partner' },
+  { src: '/logos/trust-5.jpg', alt: 'Trusted partner' },
+  { src: '/logos/trust-6.jpg', alt: 'Trusted partner' },
+  { src: '/logos/trust-7.jpg', alt: 'Trusted partner' },
+  { src: '/logos/trust-8.jpg', alt: 'Trusted partner' },
 ]
 
 const ratings = [
@@ -101,7 +104,7 @@ export default function Trust() {
           </h3>
           <div
             ref={logosRef}
-            className="grid grid-cols-2 md:grid-cols-5 gap-8 items-center justify-items-center"
+            className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center"
           >
             {logos.map((logo, index) => (
               <div
