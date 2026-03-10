@@ -10,6 +10,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'LeadEngine AU | Consistent Leads. Predictable Phone Calls.',
   description: 'We build a lead engine for Australian service businesses — so your pipeline doesn\'t depend on luck.',
+  icons: {
+    icon: '/favicon.webp',
+  },
 }
 
 export default function RootLayout({

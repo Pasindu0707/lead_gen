@@ -74,7 +74,7 @@ export default function Problem() {
   }, [])
 
   return (
-    <section id="problem" ref={sectionRef} className="bg-gray-50">
+    <section id="problem" ref={sectionRef} className="bg-white">
       <div className="container-custom">
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 text-gray-900">

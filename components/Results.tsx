@@ -120,7 +120,7 @@ export default function Results() {
   }, [])
 
   return (
-    <section id="results" ref={sectionRef} className="bg-gray-800">
+    <section id="results" ref={sectionRef} className="bg-black">
       <div className="container-custom">
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">

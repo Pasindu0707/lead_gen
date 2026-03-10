@@ -81,7 +81,7 @@ export default function Solution() {
   }, [])
 
   return (
-    <section id="solution" ref={sectionRef} className="bg-gray-50 relative">
+    <section id="solution" ref={sectionRef} className="bg-white relative">
       <div className="container-custom">
         <div className="text-center mb-20">
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 text-gray-900">

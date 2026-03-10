@@ -23,7 +23,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-gray-900 text-white py-16">
+    <footer className="bg-black text-white py-16">
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <motion.div

@@ -34,7 +34,7 @@ export default function Contact() {
     <section 
       id="contact" 
       ref={ref} 
-      className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 relative bg-black"
+      className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 relative bg-white"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
@@ -43,14 +43,15 @@ export default function Contact() {
           transition={{ duration: 0.5, ease: 'easeOut' }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight">
-            <span className="text-gray-300">Ready to Build Your</span>
-            <br />
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-yellow-accent mb-4">
+            Get started
+          </p>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.25rem] font-bold text-gray-900 leading-[1.15] tracking-tight mb-5 max-w-3xl mx-auto">
+            Ready to Build Your{' '}
             <span className="text-yellow-accent">Predictable Lead Engine?</span>
           </h2>
-          <p className="text-xl sm:text-2xl text-white/80 max-w-3xl mx-auto font-medium mb-8">
-            Book a free strategy call and see how we can build a system that gets consistent, 
-            ready-to-book calls to your business.
+          <p className="text-base sm:text-lg text-gray-600 max-w-xl mx-auto leading-relaxed">
+            Book a free strategy call. We’ll show you how to get consistent, ready-to-book calls to your business.
           </p>
         </motion.div>
 
@@ -60,7 +61,7 @@ export default function Contact() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
           >
-            <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 rounded-card shadow-card">
+            <form onSubmit={handleSubmit} className="space-y-6 bg-gray-50 p-8 rounded-card shadow-card border border-gray-200">
               <div>
                 <label htmlFor="name" className="block text-sm font-semibold mb-3 text-black">
                   Name *

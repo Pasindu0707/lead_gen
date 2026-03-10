@@ -62,47 +62,41 @@ export default function FinalCTA() {
     <section
       id="final-cta"
       ref={sectionRef}
-      className="relative py-24 sm:py-32 overflow-hidden bg-gradient-to-b from-yellow-accent/10 to-yellow-accent/5"
+      className="relative py-28 sm:py-36 overflow-hidden bg-black"
     >
-      {/* Pattern Overlay */}
-      <div className="absolute inset-0 opacity-5">
-        <div
-          className="w-full h-full"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}
-        />
-      </div>
+      {/* Gradient glow behind CTA */}
+      <div className="absolute inset-0 bg-gradient-to-b from-yellow-accent/20 via-yellow-accent/8 to-transparent" />
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(100%,600px)] h-72 bg-yellow-accent/10 rounded-full blur-[100px] pointer-events-none" />
 
-      {/* Content */}
       <div className="container-custom relative z-10">
-        <div ref={contentRef} className="text-center max-w-4xl mx-auto">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 text-gray-900 leading-tight">
-            Ready to Build Your
-            <br />
+        <div
+          ref={contentRef}
+          className="text-center max-w-2xl mx-auto"
+        >
+          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-yellow-accent mb-6">
+            Free strategy call
+          </p>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.25rem] font-bold text-white leading-[1.15] tracking-tight mb-6">
+            Ready to Build Your{' '}
             <span className="text-yellow-accent">Predictable Lead Engine?</span>
           </h2>
-          
-          <p className="text-xl sm:text-2xl text-gray-700 mb-8 font-medium">
-            Book a free strategy call and discover how we can build a lead generation system 
-            that delivers consistent, qualified calls to your business.
+
+          <p className="text-base sm:text-lg text-gray-400 leading-relaxed mb-8 max-w-xl mx-auto">
+            Book a free call. We’ll show you how to get consistent, qualified calls—without the guesswork.
           </p>
 
-          <p className="text-lg text-gray-600 mb-12 font-semibold">
-            ⚡ Limited spots available this month
-          </p>
-
-          <button
-            ref={buttonRef}
-            onClick={handleCTAClick}
-            className="bg-yellow-accent text-black px-12 py-6 rounded-full text-xl font-bold shadow-2xl shadow-yellow-accent/40 hover:shadow-yellow-accent/60 transition-all duration-300 hover:scale-110"
-          >
-            Book Free Strategy Call Now
-          </button>
-
-          <p className="text-gray-600 mt-6 text-sm">
-            No credit card required • 30-minute call • No obligation
-          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5">
+            <button
+              ref={buttonRef}
+              onClick={handleCTAClick}
+              className="w-full sm:w-auto bg-yellow-accent text-black px-8 py-4 rounded-full text-base font-bold shadow-[0_4px_24px_rgba(255,199,0,0.35)] hover:shadow-[0_6px_32px_rgba(255,199,0,0.45)] hover:bg-[#ffd633] transition-all duration-200"
+            >
+              Book Free Strategy Call
+            </button>
+            <p className="text-gray-500 text-sm">
+              No card required · 30 min · No obligation
+            </p>
+          </div>
         </div>
       </div>
     </section>

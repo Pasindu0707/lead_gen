@@ -12,7 +12,6 @@ if (typeof window !== 'undefined') {
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
 
 const logos = [
-  { src: '/logos/trust-1.png', alt: 'Trusted partner' },
   { src: '/logos/trust-2.jpg', alt: 'Trusted partner' },
   { src: '/logos/trust-3.jpg', alt: 'Trusted partner' },
   { src: '/logos/trust-4.jpg', alt: 'Trusted partner' },
@@ -95,27 +94,32 @@ export default function Trust() {
   }, [])
 
   return (
-    <section id="trust" ref={sectionRef} className="bg-gray-800">
+    <section id="trust" ref={sectionRef} className="bg-black">
       <div className="container-custom">
-        {/* Client Logos */}
+        {/* Client Logos - 7 logos: 2 cols mobile, 4 then 3 tablet, 7 in a row desktop */}
         <div className="mb-16">
-          <h3 className="text-2xl font-bold text-center text-gray-300 mb-8">
-            Trusted by Service Businesses Across Queensland
-          </h3>
+          <header className="text-center mb-14 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight">
+              Trusted Across Queensland
+            </h2>
+            <p className="text-xl sm:text-2xl md:text-3xl text-yellow-accent font-semibold mt-3 tracking-tight">
+              Service Businesses That Chose Us
+            </p>
+          </header>
           <div
             ref={logosRef}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center"
+            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-4 sm:gap-5 lg:gap-6 max-w-5xl mx-auto"
           >
             {logos.map((logo, index) => (
               <div
                 key={index}
-                className="w-full h-28 sm:h-32 bg-white border border-gray-200 rounded-card shadow-soft flex items-center justify-center p-5 grayscale hover:grayscale-0 opacity-90 hover:opacity-100 transition-all duration-300"
+                className="aspect-[4/3] bg-white rounded-xl flex items-center justify-center p-3 sm:p-4 grayscale hover:grayscale-0 opacity-90 hover:opacity-100 transition-all duration-300 border border-white/10 shadow-lg hover:shadow-yellow-accent/10 hover:border-yellow-accent/20"
               >
                 <Image
                   src={`${basePath}${logo.src}`}
                   alt={logo.alt}
-                  width={180}
-                  height={100}
+                  width={140}
+                  height={84}
                   className="w-full h-full object-contain"
                 />
               </div>
