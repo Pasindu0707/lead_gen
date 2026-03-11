@@ -20,7 +20,7 @@ const caseStudies = [
     business: 'Plumbing Company Ipswich',
     metric: '85%',
     metricLabel: 'Cost Reduction',
-    description: 'Cut cost per lead by 85% while getting more leads through better ads and follow-up.',
+    description: 'Cut cost per lead by 85% while getting more leads through better ads and follow up.',
     result: '$50K saved annually',
   },
   {
@@ -122,43 +122,43 @@ export default function Results() {
   return (
     <section id="results" ref={sectionRef} className="bg-black">
       <div className="container-custom">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
+        <div className="text-center mb-10 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4">
             <span className="text-gray-300">Real Results from</span> <span className="text-yellow-accent">Real Businesses</span>
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">
             See how we've helped service businesses in Brisbane, Ipswich, and Toowoomba get more steady customers.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-5 sm:gap-8">
           {caseStudies.map((study, index) => (
             <div
               key={index}
               ref={(el) => {
                 if (el) cardsRef.current[index] = el
               }}
-              className="bg-white rounded-card shadow-card p-6 transition-all duration-300 hover:scale-105 hover:shadow-glow"
+              className="bg-white rounded-card shadow-card p-4 sm:p-6 transition-all duration-300 hover:scale-105 hover:shadow-glow"
             >
-              <div className="mb-6">
-                <div className="text-5xl sm:text-6xl font-bold text-yellow-accent mb-2">
+              <div className="mb-4 sm:mb-6">
+                <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-yellow-accent mb-1 sm:mb-2">
                   <AnimatedCounter value={study.metric} />
                 </div>
-                <div className="text-lg text-gray-600 font-medium">
+                <div className="text-sm sm:text-base md:text-lg text-gray-600 font-medium">
                   {study.metricLabel}
                 </div>
               </div>
               
-              <h3 className="text-2xl font-bold mb-4 text-gray-900">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 text-gray-900">
                 {study.business}
               </h3>
               
-              <p className="text-gray-600 mb-4 leading-relaxed">
+              <p className="text-gray-600 text-sm sm:text-base mb-3 sm:mb-4 leading-relaxed">
                 {study.description}
               </p>
               
-              <div className="pt-4 border-t border-gray-200">
-                <span className="text-yellow-accent font-bold text-lg">
+              <div className="pt-3 sm:pt-4 border-t border-gray-200">
+                <span className="text-yellow-accent font-bold text-base sm:text-lg">
                   {study.result}
                 </span>
               </div>

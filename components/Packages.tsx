@@ -10,63 +10,66 @@ if (typeof window !== 'undefined') {
 
 const packages = [
   {
-    name: 'Social Media Growth',
-    price: '$769',
+    name: 'Lead Engine Pro',
+    price: '$1,299',
     period: '/ month',
-    ideal: 'Strong brand presence with content and reels',
+    ideal: 'Complete lead generation system for businesses that want consistent enquiries and growth.',
     features: [
-      '8 social media posts per month',
-      'Cinematic reels creation',
-      'Page management and scheduling',
-      'Captions and hashtag strategy',
-      'Community engagement support',
-      'Monthly insights report',
+      'Full Lead Engine setup (funnels + automation system)',
+      'High converting landing page design with ongoing updates & maintenance',
+      'Meta Ads management (Facebook & Instagram)',
+      'Google Ads management',
+      'Professional marketing creatives (photo/video content for ads & landing page)',
+      'Retargeting campaign setup to convert warm audiences',
+      'Lead tracking system with performance reporting',
+      'Monthly strategy optimisation to improve results and conversions',
     ],
+    bestFor: 'Best for businesses wanting consistent leads and full marketing support',
     cta: 'Get Started',
     popular: false,
   },
   {
     name: 'Lead Engine Growth',
-    price: '$879',
+    price: '$799',
     period: '/ month',
-    ideal: 'Focused ad campaigns and automated lead capture',
+    ideal: 'For businesses focused on lead generation through paid advertising.',
     features: [
       'Lead Engine funnel setup',
-      'Meta Ads campaign management',
-      'Ad targeting and improving',
+      'Meta Ads campaign management (Facebook & Instagram)',
+      'Google Ads campaign management',
+      'Advanced ad targeting and optimisation',
       'Retargeting campaigns',
-      'Lead tracking and monthly reporting',
-      'Improving results over time',
-      'Google Ads',
+      'Lead tracking system',
+      'Monthly performance reporting',
+      'Continuous campaign improvement and optimisation',
     ],
+    bestFor: 'Best for businesses that already have a website but want more enquiries and conversions',
     cta: 'Get Started',
     popular: true,
   },
   {
-    name: 'Lead Engine Pro',
-    price: '$1,299',
+    name: 'Social Media Growth',
+    price: '$879',
     period: '/ month',
-    ideal: 'Full lead automation system',
+    ideal: 'For businesses wanting strong brand presence and engaging content.',
     features: [
-      'Lead Engine setup (funnels and automation)',
-      'Landing page design and creation',
-      'Meta Ads management (Facebook and Instagram)',
-      'Google Ads management',
-      '8 professional social media posts per month',
-      'Marketing creatives',
-      'Retargeting campaign setup',
-      'Lead tracking and performance reporting',
-      'Strategy to improve results',
+      '8 social media posts per month',
+      'Cinematic AI reels / video creation',
+      'Full page management & scheduling',
+      'Professional captions and hashtag strategy',
+      'Community engagement support',
+      'Meta Ads management',
+      'Monthly insights & performance report',
     ],
+    bestFor: 'Best for businesses that want consistent social media growth and brand visibility',
     cta: 'Get Started',
     popular: false,
   },
 ]
 
 const subservices = [
-  'Social media management',
   'Video Productions',
-  'Web design and Development',
+  'Web Design and Development',
   'Brand design',
   'SEO (Google Ads)',
 ]
@@ -142,11 +145,11 @@ export default function Packages() {
   return (
     <section id="packages" ref={sectionRef} className="bg-white">
       <div className="container-custom">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 text-gray-900">
+        <div className="text-center mb-10 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 text-gray-900">
             Choose Your <span className="text-yellow-accent">Package</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
             Flexible options to match your business and where you want to grow.
           </p>
         </div>
@@ -172,35 +175,33 @@ export default function Packages() {
                 </div>
               )}
 
-              <h3 className="text-3xl font-bold mb-2 text-gray-900">{pkg.name}</h3>
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 text-gray-900">{pkg.name}</h3>
               
-              <div className="mb-4">
-                <span className="text-5xl font-bold text-yellow-accent">{pkg.price}</span>
-                <span className="text-gray-600 text-lg">{pkg.period}</span>
+              <div className="mb-3 sm:mb-4">
+                <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-yellow-accent">{pkg.price}</span>
+                <span className="text-gray-600 text-base sm:text-lg">{pkg.period}</span>
               </div>
               
-              <p className="text-gray-600 mb-6">{pkg.ideal}</p>
+              <p className="text-gray-600 text-sm sm:text-base mb-4 sm:mb-5">{pkg.ideal}</p>
 
-              <ul className="space-y-4 mb-6 flex-1">
+              <h4 className="text-sm font-bold text-gray-900 uppercase tracking-wide mb-3">
+                What&apos;s included
+              </h4>
+              <ul className="space-y-3 mb-6 flex-1">
                 {pkg.features.map((feature, idx) => (
                   <li key={idx} className="flex items-start">
-                    <svg
-                      className="w-6 h-6 text-yellow-accent mr-3 flex-shrink-0 mt-0.5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    <span className="text-gray-700">{feature}</span>
+                    <span className="text-yellow-accent mr-2 flex-shrink-0">•</span>
+                    <span className="text-gray-700 text-xs sm:text-sm md:text-base">{feature}</span>
                   </li>
                 ))}
               </ul>
+
+              {pkg.bestFor && (
+                <p className="flex items-start gap-2 text-gray-700 text-sm font-medium mb-6">
+                  <span className="text-yellow-accent flex-shrink-0">✔</span>
+                  <span>{pkg.bestFor}</span>
+                </p>
+              )}
 
               <button
                 onClick={scrollToCTA}
@@ -217,7 +218,7 @@ export default function Packages() {
         </div>
 
         <div className="mt-16 pt-12 border-t border-gray-200">
-          <h3 className="text-center text-xl font-semibold text-gray-700 mb-6">
+          <h3 className="text-center text-base sm:text-lg md:text-xl font-semibold text-gray-700 mb-4 sm:mb-6">
             Also available as separate services
           </h3>
           <div className="flex flex-wrap justify-center gap-3">

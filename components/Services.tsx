@@ -40,7 +40,7 @@ export default function Services() {
     <section 
       id="services" 
       ref={ref} 
-      className="py-40 px-4 sm:px-6 lg:px-8 relative"
+      className="py-20 sm:py-28 md:py-36 lg:py-40 px-4 sm:px-6 lg:px-8 relative"
       style={{
         background: 'linear-gradient(135deg, #FFC700 0%, #FFD633 50%, #FFE066 100%), radial-gradient(ellipse at bottom left, rgba(255, 255, 255, 0.2) 0%, transparent 50%)'
       }}
@@ -50,17 +50,17 @@ export default function Services() {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="text-center mb-24"
+          className="text-center mb-12 sm:mb-16 md:mb-24"
         >
-          <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-8 tracking-tight text-black">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 md:mb-8 tracking-tight text-black">
             What We Offer
           </h2>
-          <p className="text-xl sm:text-2xl text-black/80 max-w-3xl mx-auto font-light">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-black/80 max-w-3xl mx-auto font-light">
             Core lead generation plus supporting services to amplify your results.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
@@ -68,17 +68,17 @@ export default function Services() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1, ease: 'easeOut' }}
               whileHover={{ y: -12, scale: 1.02 }}
-              className="group p-8 bg-white rounded-3xl hover-lift cursor-pointer relative overflow-hidden border border-black/10 shadow-xl hover:shadow-2xl transition-all"
+              className="group p-5 sm:p-6 md:p-8 bg-white rounded-2xl sm:rounded-3xl hover-lift cursor-pointer relative overflow-hidden border border-black/10 shadow-xl hover:shadow-2xl transition-all"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-transparent group-hover:from-white/70 transition-all duration-500" />
               <div className="relative z-10">
-                <div className="text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-300">
+                <div className="text-3xl sm:text-4xl md:text-5xl mb-4 sm:mb-6 transform group-hover:scale-110 transition-transform duration-300">
                   {service.icon}
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-black group-hover:text-yellow-accent transition-colors">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 text-black group-hover:text-yellow-accent transition-colors">
                   {service.title}
                 </h3>
-                <p className="text-gray-800 leading-relaxed">{service.description}</p>
+                <p className="text-sm sm:text-base text-gray-800 leading-relaxed">{service.description}</p>
               </div>
             </motion.div>
           ))}

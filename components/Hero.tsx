@@ -135,7 +135,7 @@ export default function Hero() {
     <section
       id="hero"
       ref={heroRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       {/* Animated Gradient Background Layer 1 */}
       <div
@@ -189,15 +189,14 @@ export default function Hero() {
 
       {/* Content */}
       <div ref={contentRef} className="container-custom relative z-10 text-center">
-        <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-tight">
-          <span className="block">Build a Predictable</span>
-          <span className="block gradient-text">Lead Engine</span>
-          <span className="block">That Never Stops</span>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
+          <span className="block">Build a Lead Generation System</span>
+          <span className="block gradient-text">That Brings You Customers Consistently</span>
         </h1>
         
         <p className="text-base sm:text-lg lg:text-xl text-white/80 mb-12 max-w-3xl mx-auto font-medium">
-          We build consistent lead generation systems for service-based businesses in Brisbane, Ipswich, and Toowoomba. 
-          Your pipeline won't depend on luck anymore.
+          We build consistent lead generation systems for service based businesses across Australia. 
+          Helping you generate consistent enquiries and predictable growth.
         </p>
 
         {/* CTAs */}

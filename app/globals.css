@@ -83,11 +83,19 @@ body {
   }
 }
 
-/* Smooth section transitions */
+/* Responsive base: slightly smaller on phone/tablet so content fits */
+@media (max-width: 639px) {
+  html { font-size: 14px; }
+}
+@media (min-width: 640px) and (max-width: 1023px) {
+  html { font-size: 15px; }
+}
+
+/* Smooth section transitions - less padding on small screens */
 section {
   position: relative;
   isolation: isolate;
-  @apply py-20 sm:py-24 lg:py-32;
+  @apply py-14 sm:py-20 lg:py-24 xl:py-32;
 }
 
 /* Better focus styles */

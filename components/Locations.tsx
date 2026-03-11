@@ -18,7 +18,7 @@ export default function Locations() {
     <section 
       id="locations" 
       ref={ref} 
-      className="py-40 px-4 sm:px-6 lg:px-8 relative"
+      className="py-20 sm:py-28 md:py-36 lg:py-40 px-4 sm:px-6 lg:px-8 relative"
       style={{
         background: 'linear-gradient(135deg, #FFC700 0%, #FFD633 50%, #FFE066 100%), radial-gradient(ellipse at top left, rgba(255, 255, 255, 0.2) 0%, transparent 50%)'
       }}
@@ -28,12 +28,12 @@ export default function Locations() {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="text-center mb-24"
+          className="text-center mb-12 sm:mb-16 md:mb-24"
         >
-          <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-8 tracking-tight text-black">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 md:mb-8 tracking-tight text-black">
             Service Locations
           </h2>
-          <p className="text-xl sm:text-2xl text-black/80 max-w-3xl mx-auto font-light">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-black/80 max-w-3xl mx-auto font-light">
             Local service, Australia-wide execution.
           </p>
         </motion.div>
@@ -42,7 +42,7 @@ export default function Locations() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-          className="flex flex-wrap items-center justify-center gap-6 mb-16"
+          className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mb-10 sm:mb-16"
         >
           {locations.map((location, index) => (
             <motion.div
@@ -51,7 +51,7 @@ export default function Locations() {
               animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.3 + index * 0.1, type: 'spring' }}
               whileHover={{ scale: 1.1, y: -5 }}
-              className={`px-8 py-4 rounded-full text-lg font-bold transition-all shadow-lg ${
+              className={`px-5 py-3 sm:px-8 sm:py-4 rounded-full text-base sm:text-lg font-bold transition-all shadow-lg ${
                 location.type === 'primary'
                   ? 'bg-black text-white hover:shadow-black/30'
                   : 'bg-white text-black border border-black/20 hover:border-black/40'
@@ -74,11 +74,11 @@ export default function Locations() {
               <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                className="text-7xl mb-6"
+                className="text-5xl sm:text-6xl md:text-7xl mb-4 sm:mb-6"
               >
                 📍
               </motion.div>
-              <p className="text-xl text-gray-800 font-medium">Queensland, Australia</p>
+              <p className="text-base sm:text-lg md:text-xl text-gray-800 font-medium">Queensland, Australia</p>
             </div>
           </div>
         </motion.div>

@@ -3,6 +3,7 @@ import Hero from '@/components/Hero'
 import Problem from '@/components/Problem'
 import Solution from '@/components/Solution'
 import Results from '@/components/Results'
+import LeadGraphs from '@/components/LeadGraphs'
 import Packages from '@/components/Packages'
 import Trust from '@/components/Trust'
 import Contact from '@/components/Contact'
@@ -17,6 +18,7 @@ export default function Home() {
       <Problem />
       <Solution />
       <Results />
+      <LeadGraphs />
       <Packages />
       <Trust />
       <Contact />

@@ -34,7 +34,7 @@ export default function Contact() {
     <section 
       id="contact" 
       ref={ref} 
-      className="py-24 sm:py-32 px-4 sm:px-6 lg:px-8 relative bg-white"
+      className="py-14 sm:py-20 lg:py-24 xl:py-32 px-4 sm:px-6 lg:px-8 relative bg-white"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
@@ -46,12 +46,12 @@ export default function Contact() {
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-yellow-accent mb-4">
             Get started
           </p>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.25rem] font-bold text-gray-900 leading-[1.15] tracking-tight mb-5 max-w-3xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[3.25rem] font-bold text-gray-900 leading-[1.15] tracking-tight mb-4 sm:mb-5 max-w-3xl mx-auto">
             Ready to Build Your{' '}
             <span className="text-yellow-accent">Predictable Lead Engine?</span>
           </h2>
-          <p className="text-base sm:text-lg text-gray-600 max-w-xl mx-auto leading-relaxed">
-            Book a free strategy call. We’ll show you how to get consistent, ready-to-book calls to your business.
+          <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-xl mx-auto leading-relaxed">
+            Book a free strategy call. We’ll show you how to get consistent, ready to book calls to your business.
           </p>
         </motion.div>
 
@@ -61,7 +61,7 @@ export default function Contact() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
           >
-            <form onSubmit={handleSubmit} className="space-y-6 bg-gray-50 p-8 rounded-card shadow-card border border-gray-200">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6 bg-gray-50 p-4 sm:p-6 md:p-8 rounded-card shadow-card border border-gray-200">
               <div>
                 <label htmlFor="name" className="block text-sm font-semibold mb-3 text-black">
                   Name *
@@ -73,7 +73,7 @@ export default function Contact() {
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-5 py-4 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:border-yellow-accent focus:bg-white transition-all text-black placeholder-gray-400"
+                  className="w-full px-4 py-3 sm:px-5 sm:py-4 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:border-yellow-accent focus:bg-white transition-all text-black placeholder-gray-400 text-sm sm:text-base"
                   placeholder="Your name"
                 />
               </div>
@@ -88,7 +88,7 @@ export default function Contact() {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-5 py-4 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:border-yellow-accent focus:bg-white transition-all text-black placeholder-gray-400"
+                  className="w-full px-4 py-3 sm:px-5 sm:py-4 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:border-yellow-accent focus:bg-white transition-all text-black placeholder-gray-400 text-sm sm:text-base"
                   placeholder="your@email.com"
                 />
               </div>
@@ -103,7 +103,7 @@ export default function Contact() {
                   required
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full px-5 py-4 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:border-yellow-accent focus:bg-white transition-all text-black placeholder-gray-400"
+                  className="w-full px-4 py-3 sm:px-5 sm:py-4 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:border-yellow-accent focus:bg-white transition-all text-black placeholder-gray-400 text-sm sm:text-base"
                   placeholder="+61 4XX XXX XXX"
                 />
               </div>
@@ -118,7 +118,7 @@ export default function Contact() {
                   value={formData.businessType}
                   onChange={handleChange}
                   placeholder="e.g., Plumbing, Electrical, Legal Services"
-                  className="w-full px-5 py-4 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:border-yellow-accent focus:bg-white transition-all text-black placeholder-gray-400"
+                  className="w-full px-4 py-3 sm:px-5 sm:py-4 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:border-yellow-accent focus:bg-white transition-all text-black placeholder-gray-400 text-sm sm:text-base"
                 />
               </div>
               <div>
@@ -130,7 +130,7 @@ export default function Contact() {
                   name="location"
                   value={formData.location}
                   onChange={handleChange}
-                  className="w-full px-5 py-4 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:border-yellow-accent focus:bg-white transition-all text-black"
+                  className="w-full px-4 py-3 sm:px-5 sm:py-4 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:border-yellow-accent focus:bg-white transition-all text-black text-sm sm:text-base"
                 >
                   <option value="">Select a location</option>
                   <option value="brisbane">Brisbane</option>
@@ -149,7 +149,7 @@ export default function Contact() {
                   rows={4}
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full px-5 py-4 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:border-yellow-accent focus:bg-white transition-all resize-none text-black placeholder-gray-400"
+                  className="w-full px-4 py-3 sm:px-5 sm:py-4 bg-gray-50 border border-gray-300 rounded-xl focus:outline-none focus:border-yellow-accent focus:bg-white transition-all resize-none text-black placeholder-gray-400 text-sm sm:text-base"
                   placeholder="Tell us about your business..."
                 />
               </div>
@@ -157,7 +157,7 @@ export default function Contact() {
                 type="submit"
                 whileHover={{ scale: 1.02, boxShadow: '0 10px 30px rgba(255, 199, 0, 0.3)' }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full px-8 py-5 bg-yellow-accent text-black font-bold rounded-xl text-lg hover:bg-yellow-accent/90 transition-all shadow-lg shadow-yellow-accent/20"
+                className="w-full px-6 py-4 sm:px-8 sm:py-5 bg-yellow-accent text-black font-bold rounded-xl text-base sm:text-lg hover:bg-yellow-accent/90 transition-all shadow-lg shadow-yellow-accent/20"
               >
                 Submit Inquiry
               </motion.button>

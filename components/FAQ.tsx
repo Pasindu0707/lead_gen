@@ -48,7 +48,7 @@ export default function FAQ() {
     <section 
       id="faqs" 
       ref={ref} 
-      className="py-40 px-4 sm:px-6 lg:px-8 bg-white"
+      className="py-20 sm:py-28 md:py-36 lg:py-40 px-4 sm:px-6 lg:px-8 bg-white"
       style={{
         background: 'linear-gradient(135deg, #fffef5 0%, #ffffff 50%, #fefefe 100%), radial-gradient(ellipse at bottom left, rgba(255, 199, 0, 0.2) 0%, transparent 50%)'
       }}
@@ -58,36 +58,36 @@ export default function FAQ() {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="text-center mb-24"
+          className="text-center mb-12 sm:mb-16 md:mb-24"
         >
-          <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-8 tracking-tight text-black">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 md:mb-8 tracking-tight text-black">
             Frequently Asked Questions
           </h2>
-          <p className="text-xl sm:text-2xl text-gray-700 font-light">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 font-light">
             Everything you need to know about how we get you more customers.
           </p>
         </motion.div>
 
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.05, ease: 'easeOut' }}
-              className="bg-white rounded-2xl overflow-hidden group border border-gray-200 shadow-lg"
+              className="bg-white rounded-xl sm:rounded-2xl overflow-hidden group border border-gray-200 shadow-lg"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-yellow-accent/5 transition-all"
+                className="w-full px-4 sm:px-6 md:px-8 py-4 sm:py-5 md:py-6 text-left flex items-center justify-between hover:bg-yellow-accent/5 transition-all gap-3"
                 aria-expanded={openIndex === index}
               >
-                <span className="font-bold text-lg pr-8 text-black group-hover:text-yellow-accent transition-colors">
+                <span className="font-bold text-sm sm:text-base md:text-lg pr-4 sm:pr-8 text-black group-hover:text-yellow-accent transition-colors">
                   {faq.question}
                 </span>
                 <motion.span
                   animate={{ rotate: openIndex === index ? 180 : 0 }}
-                  className="text-yellow-accent text-2xl flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-yellow-accent/10"
+                  className="text-yellow-accent text-lg sm:text-xl md:text-2xl flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-yellow-accent/10"
                   transition={{ duration: 0.3 }}
                 >
                   ↓
@@ -102,7 +102,7 @@ export default function FAQ() {
                     transition={{ duration: 0.3, ease: 'easeInOut' }}
                     className="overflow-hidden"
                   >
-                    <div className="px-8 py-6 text-gray-700 border-t border-gray-200 leading-relaxed text-lg">
+                    <div className="px-4 sm:px-6 md:px-8 py-4 sm:py-5 md:py-6 text-gray-700 border-t border-gray-200 leading-relaxed text-sm sm:text-base md:text-lg">
                       {faq.answer}
                     </div>
                   </motion.div>

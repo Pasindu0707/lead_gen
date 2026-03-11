@@ -90,19 +90,19 @@ export default function Navbar() {
         }`}
       >
         <div className="container-custom">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-14 sm:h-16 md:h-20">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => scrollToSection('#hero')}
-              className="flex items-center cursor-pointer bg-transparent border-none p-0 h-14"
+              className="flex items-center cursor-pointer bg-transparent border-none p-0 h-9 sm:h-10 md:h-12"
             >
               <Image
                 src={`${basePath}/logo.webp`}
                 alt="LeadEngine AU"
                 width={220}
                 height={56}
-                className="h-12 w-auto object-contain object-left"
+                className="h-8 sm:h-9 md:h-12 w-auto object-contain object-left"
                 priority
               />
             </motion.button>
@@ -188,13 +188,13 @@ export default function Navbar() {
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
               className="fixed top-0 left-0 bottom-0 w-80 max-w-[85vw] bg-black/95 backdrop-blur-xl border-r border-white/10 z-[100] lg:hidden overflow-y-auto shadow-xl"
             >
-              <div className="flex items-center justify-between p-6 border-b border-gray-200">
+              <div className="flex items-center justify-between p-4 sm:p-6 border-b border-gray-200">
                 <Image
                   src={`${basePath}/logo.webp`}
                   alt="LeadEngine AU"
                   width={200}
                   height={52}
-                  className="h-12 w-auto object-contain"
+                  className="h-9 sm:h-12 w-auto object-contain"
                 />
                 <motion.button
                   onClick={() => setMobileMenuOpen(false)}

@@ -76,12 +76,12 @@ export default function FinalCTA() {
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-yellow-accent mb-6">
             Free strategy call
           </p>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.25rem] font-bold text-white leading-[1.15] tracking-tight mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[3.25rem] font-bold text-white leading-[1.15] tracking-tight mb-4 sm:mb-6">
             Ready to Build Your{' '}
             <span className="text-yellow-accent">Predictable Lead Engine?</span>
           </h2>
 
-          <p className="text-base sm:text-lg text-gray-400 leading-relaxed mb-8 max-w-xl mx-auto">
+          <p className="text-sm sm:text-base md:text-lg text-gray-400 leading-relaxed mb-6 sm:mb-8 max-w-xl mx-auto">
             Book a free call. We’ll show you how to get consistent, qualified calls—without the guesswork.
           </p>
 
@@ -89,7 +89,7 @@ export default function FinalCTA() {
             <button
               ref={buttonRef}
               onClick={handleCTAClick}
-              className="w-full sm:w-auto bg-yellow-accent text-black px-8 py-4 rounded-full text-base font-bold shadow-[0_4px_24px_rgba(255,199,0,0.35)] hover:shadow-[0_6px_32px_rgba(255,199,0,0.45)] hover:bg-[#ffd633] transition-all duration-200"
+              className="w-full sm:w-auto bg-yellow-accent text-black px-6 py-3 sm:px-8 sm:py-4 rounded-full text-sm sm:text-base font-bold shadow-[0_4px_24px_rgba(255,199,0,0.35)] hover:shadow-[0_6px_32px_rgba(255,199,0,0.45)] hover:bg-[#ffd633] transition-all duration-200"
             >
               Book Free Strategy Call
             </button>

@@ -16,7 +16,7 @@ const problems = [
       </svg>
     ),
     title: 'Inconsistent Leads',
-    description: 'Your business relies on referrals and word-of-mouth, leaving revenue unpredictable and growth stalled.',
+    description: 'When there is no proper system bringing in leads, enquiries come randomly. Some weeks are busy, while other weeks are quiet.',
   },
   {
     icon: (
@@ -25,7 +25,7 @@ const problems = [
       </svg>
     ),
     title: 'Wasted Ad Spend',
-    description: 'You\'re throwing money at ads without a system to convert leads into paying customers consistently.',
+    description: 'Many businesses try Facebook ads, Google ads, or social media posts, but without a structured process to turn visitors into real enquiries.',
   },
   {
     icon: (
@@ -34,7 +34,7 @@ const problems = [
       </svg>
     ),
     title: 'No Time to Scale',
-    description: 'You\'re too busy working IN your business to work ON it, preventing you from growing beyond your current capacity.',
+    description: 'When new customers don\'t come consistently, it becomes difficult to plan staff, manage workload, or grow the business with confidence.',
   },
 ]
 
@@ -76,31 +76,32 @@ export default function Problem() {
   return (
     <section id="problem" ref={sectionRef} className="bg-white">
       <div className="container-custom">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 text-gray-900">
+        <div className="text-center mb-10 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 text-gray-900">
             The Problem Most Service Businesses Face
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Without a systematic approach to lead generation, your business growth is left to chance.
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+            Most service businesses don&apos;t have a reliable system to attract and convert leads.
+            Without a structured marketing engine, enquiries become inconsistent and business growth becomes unpredictable.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-5 sm:gap-8">
           {problems.map((problem, index) => (
             <div
               key={index}
               ref={(el) => {
                 if (el) cardsRef.current[index] = el
               }}
-              className="bg-white border border-gray-200 rounded-card shadow-soft p-6 transition-all duration-300 hover:scale-105 hover:shadow-card hover:border-yellow-accent/50 text-center"
+              className="bg-white border border-gray-200 rounded-card shadow-soft p-4 sm:p-6 transition-all duration-300 hover:scale-105 hover:shadow-card hover:border-yellow-accent/50 text-center"
             >
-              <div className="text-yellow-accent mb-4 flex justify-center">
+              <div className="text-yellow-accent mb-3 sm:mb-4 flex justify-center [&>svg]:w-8 [&>svg]:h-8 sm:[&>svg]:w-12 sm:[&>svg]:h-12">
                 {problem.icon}
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-900">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 text-gray-900">
                 {problem.title}
               </h3>
-              <p className="text-gray-600 text-lg leading-relaxed">
+              <p className="text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed">
                 {problem.description}
               </p>
             </div>

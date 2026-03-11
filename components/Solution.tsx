@@ -83,12 +83,12 @@ export default function Solution() {
   return (
     <section id="solution" ref={sectionRef} className="bg-white relative">
       <div className="container-custom">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 text-gray-900">
+        <div className="text-center mb-12 sm:mb-20">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 text-gray-900">
             How Our <span className="text-yellow-accent">Lead Engine</span> Works
           </h2>
-          <p className="text-xl text-gray-700 max-w-2xl mx-auto">
-            A simple 3-step process to get you more customers, without the guesswork.
+          <p className="text-base sm:text-lg md:text-xl text-gray-700 max-w-2xl mx-auto">
+            A simple 3 step process to get you more customers, without the guesswork.
           </p>
         </div>
 
@@ -103,29 +103,29 @@ export default function Solution() {
           </div>
 
           {/* Steps - Vertical layout with numbers on left, content on right */}
-          <div className="space-y-16 md:space-y-20">
+          <div className="space-y-10 sm:space-y-14 md:space-y-20">
             {steps.map((step, index) => (
               <div
                 key={index}
                 ref={(el) => {
                   if (el) stepsRef.current[index] = el
                 }}
-                className="relative flex flex-col md:flex-row items-start gap-8 md:gap-12"
+                className="relative flex flex-col md:flex-row items-start gap-5 sm:gap-8 md:gap-12"
               >
                 {/* Step Number Circle - Always on left */}
                 <div className="relative z-10 flex-shrink-0 md:w-24">
-                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-yellow-accent flex items-center justify-center shadow-glow">
-                    <span className="text-2xl md:text-3xl font-bold text-black">{step.number}</span>
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-24 md:h-24 rounded-full bg-yellow-accent flex items-center justify-center shadow-glow">
+                    <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-black">{step.number}</span>
                   </div>
                 </div>
 
                 {/* Step Content - Always on right */}
                 <div className="flex-1 md:pt-2">
-                  <div className="bg-white border border-gray-200 rounded-card shadow-soft p-6 max-w-2xl">
-                    <h3 className="text-3xl font-bold mb-4 text-gray-900">
+                  <div className="bg-white border border-gray-200 rounded-card shadow-soft p-4 sm:p-6 max-w-2xl">
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-4 text-gray-900">
                       {step.title}
                     </h3>
-                    <p className="text-lg text-gray-700 leading-relaxed">
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                       {step.description}
                     </p>
                   </div>
